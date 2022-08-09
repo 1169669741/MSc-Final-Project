@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Jan 02 10:33:39 CST 2020
+slf4j-api-1.7.25.jar>central=
+slf4j-api-1.7.25-sources.jar>aliyun-repos=
+slf4j-api-1.7.25.pom>central=

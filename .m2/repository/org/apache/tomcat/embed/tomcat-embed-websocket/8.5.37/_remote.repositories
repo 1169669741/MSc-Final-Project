@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Jan 02 10:36:25 CST 2020
+tomcat-embed-websocket-8.5.37.pom>aliyun-repos=
+tomcat-embed-websocket-8.5.37.jar>aliyun-repos=
+tomcat-embed-websocket-8.5.37-sources.jar>aliyun-repos=

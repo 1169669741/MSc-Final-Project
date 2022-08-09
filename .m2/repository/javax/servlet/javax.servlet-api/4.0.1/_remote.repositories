@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon May 03 01:40:53 CST 2021
+javax.servlet-api-4.0.1.jar>central=
+javax.servlet-api-4.0.1.pom>central=
+javax.servlet-api-4.0.1.jar>aliyun-repos=
+javax.servlet-api-4.0.1.pom>aliyun-repos=

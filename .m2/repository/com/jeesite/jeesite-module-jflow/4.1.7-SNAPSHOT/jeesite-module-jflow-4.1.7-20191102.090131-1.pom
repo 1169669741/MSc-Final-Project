@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.jeesite</groupId>
+		<artifactId>jeesite-parent</artifactId>
+		<version>4.1.7-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>jeesite-module-jflow</artifactId>
+	<packaging>jar</packaging>
+
+	<name>JeeSite Module JFlow</name>
+	<url>http://ccflow.org</url>
+	<inceptionYear>2018-Now</inceptionYear>
+
+	<properties>
+
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.jeesite</groupId>
+			<artifactId>jeesite-module-core</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.jeesite</groupId>
+			<artifactId>jflow-core</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+	<developers>
+		<developer>
+			<id>thinkgem</id>
+			<name>WangZhen</name>
+			<email>thinkgem at 163.com</email>
+			<roles><role>Project lead</role></roles>
+			<timezone>+8</timezone>
+		</developer>
+		<developer>
+			<id>ccflow</id>
+			<name>ZhouPeng</name>
+			<email>zhoupeng at ccflow.org</email>
+			<timezone>+8</timezone>
+		</developer>
+	</developers>
+
+	<organization>
+		<name>JeeSite、Opencc</name>
+		<url>http://ccflow.org</url>
+	</organization>
+
+</project>

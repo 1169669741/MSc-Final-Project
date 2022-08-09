@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Jan 02 10:34:28 CST 2020
+auto-common-0.6.pom>central=
+auto-common-0.6.jar>central=
+auto-common-0.6.jar>aliyun-repos=
+auto-common-0.6.pom>aliyun-repos=
+auto-common-0.6-sources.jar>central=

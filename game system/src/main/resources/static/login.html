@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<title>System Login</title>
+		<link href="css/login.css" type="text/css" rel="stylesheet">
+		<!--<link rel="icon" href="img/logo/dbrlogo.png" sizes="32x32">-->
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+		<!--<link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../layui/css/layui.css" media="all" />-->
+		<!--<link rel="stylesheet" href="../css/global.css" media="all" />
+		<link rel="stylesheet" href="../css/font-awesome/css/font-awesome.css" media="all" />-->
+	</head>
+
+	<body class="demo-1">
+		<div id="top">
+		</div>
+		<div id="loginbg" class="loginbg" style="margin:8% auto; width:500px; height:500px;">
+			<form id="login_form" action="" class="login_form">
+				<p class="form_name">Management System</p>
+				<div id="table_login">
+					<input type="text" placeholder="Please enter your username" name="username" id="username" class="name" />
+					<input type="password" placeholder="Please enter your password" class="password" name="password" id="password" />
+					<div class="yzm">
+						<input type="text" placeholder="Please enter the verification code" class="code" name="code" id="Login_code" />
+						<canvas style="float: right; height: 70px; width: 40%;" class="J_codeimg" id="myCanvas" onclick="Code();">Sorry, your browser does not support canvas, please download the latest version of your browser!</canvas>
+					</div>
+				</div>
+				<p class="yzmbtn" style="margin-left: 30%;">
+					<input type="button" name="btn1" class="btn1" value="Login in" onclick="login(this)" />
+					<p id="res"></p>
+			</form>
+		</div>
+
+	</body>
+	<script src="js/libs/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script src="js/Treatment.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		if (top != self) {
+			parent.location.href = '/login.html';
+		}
+
+		var canGetCookie = 0; //Whether storing cookies is supported 0 Not supported 1 Supported
+		var CodeVal = 0;
+		Code();
+
+		function Code() {
+			if (canGetCookie == 1) {
+				createCode("AdminCode");
+				var AdminCode = getCookieValue("AdminCode");
+				showCheck(AdminCode);
+			} else {
+				showCheck(createCode(""));
+			}
+		}
+
+		function showCheck(a) {
+			CodeVal = a;
+			var c = document.getElementById("myCanvas");
+			var ctx = c.getContext("2d");
+			ctx.clearRect(0, 0, 1000, 1000);
+			ctx.font = "80px 'Hiragino Sans GB'";
+			ctx.fillStyle = "#E8DFE8";
+			ctx.fillText(a, 0, 100);
+		}
+
+		var token = localStorage.getItem("token");
+		if (token != null && token.trim().length != 0) {
+			$.ajax({
+				type: 'get',
+				url: '/users/current?token=' + token,
+				success: function(data) {
+					location.href = '/index.html';
+				},
+				error: function(xhr, textStatus, errorThrown) {
+					var msg = xhr.responseText;
+					var response = JSON.parse(msg);
+					var code = response.code;
+					var message = response.message;
+					if (code == 401) {
+						localStorage.removeItem("token");
+					}
+				}
+			});
+		}
+
+		function login(obj) {
+			$("#res").html("");
+			$(obj).attr("disabled", true);
+
+			var username = $.trim($('#username').val());
+			var password = $.trim($('#password').val());
+			console.log(username);
+			console.log($('#username').val());
+			var code = $('input[name="code"]').val();
+			if (username == "" || password == "") {
+				alert('Username or password cannot be empty');
+				// $("#info").html('Username or password cannot be empty');
+				$(obj).attr("disabled", false);
+			} else if (code == '' || code.length != 4) {
+				alert('Please enter the verification code');
+				// $("#info").html('Username or password cannot be empty');
+				$(obj).attr("disabled", false);
+			} else {
+				$.ajax({
+					type: 'post',
+					url: '/login',
+					data: $("#login_form").serialize(),
+					success: function(data) {
+						console.log(data);
+						if (code.toUpperCase() == CodeVal.toUpperCase()) {
+							alert("Login successful!");
+
+							localStorage.setItem("token", data.token);
+							location.href = '/index.html';
+						} else {
+							alert("Login failed, wrong verification code. Please re-enter");
+						}
+
+					},
+					error: function(xhr, textStatus, errorThrown) {
+						var msg = xhr.responseText;
+						var response = JSON.parse(msg);
+						alert(response.message);
+						//$("#info").html(response.message);
+						$(obj).attr("disabled", false);
+					}
+				});
+
+			}
+		}
+	</script>
+
+</html>

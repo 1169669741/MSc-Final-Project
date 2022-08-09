@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../layui-v2.6.8/layui/css/layui.css">
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				background: url(../../images/add/addbg.png) no-repeat;
+				background-size: 100% 100%;
+			}
+			
+			::-webkit-scrollbar{
+			    width:0px;
+			    height:10px;
+			  }
+			 
+			.box {
+				width: 100%;
+				overflow: hidden auto;
+				max-height: calc(100% - 150px);
+				overflow:hidden auto;
+			}
+
+			.boxtop {
+				width: 100%;
+			}
+
+			.boxbottom {
+				width: 100%;
+				height: 50px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-top:10px;
+			}
+			.boxmid {
+				width: 100%;
+				height: 40px;
+				margin-top:10px;
+				text-align: center;
+				line-height: 40px;
+				color: #333;
+				font-size: 18px;
+			}
+
+			.topic {
+				width: 100%;
+				padding: 5px 20px;
+				box-sizing: border-box;
+			}
+
+			.title {
+				font-size: 18px;
+				color: #333;
+				height: 40px;
+				line-height: 40px;
+				font-weight: bold;
+			}
+
+			.content {
+				line-height:40px;
+				height: 40px;
+				font-size: 16px;
+				color: #666;
+			}
+
+			.answerbox {
+				background: #F4F4F6;
+				margin-top: 10px;
+			}
+			.selectbox {
+				line-height:40px;
+				font-size: 17px;
+				color: #999;
+				height: 40px;	
+				background:transparent;
+				padding:0px 20px;
+				box-sizing: border-box;
+				border: none;
+			}
+
+			.layui-btn {
+				background: #F4F4F6;
+				color: #808080;
+			}
+
+			.layui-btn:hover {
+				background: #1E9FFF;
+				color: #F4F4F6;
+			}
+
+			.layui-layer-content {
+				background-color: #b7cff5;
+				color: #fff
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="layui-row layui-container">
+				<div class="layui-col-xs10 layui-col-sm10 layui-col-md10 layui-col-md-offset1"> 
+					<div class="boxtop">
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="boxmid"></div>
+			<div class="boxbottom">
+				<button class="layui-btn layui-btn-normal  layui-btn-lg"
+					style="border-radius: 5px;letter-spacing:8px;">返回</button>
+				<button class="layui-btn layui-btn-normal  layui-btn-lg"
+					style="border-radius: 5px;letter-spacing:1px;margin-left:20px;" onclick="submitForm()">提交</button>
+			</div>
+		<script src="../../js/jquery-3.2.1.min.js"></script>
+		<script src="../../layui-v2.6.8/layui/layui.js"></script>
+		<script src="../../js/common.js"></script>
+		<script>
+			layui.use('layer', function() {
+				var layer = layui.layer;
+			});
+
+			var url = gettexturl(url);
+			var basicid = getUrlParam("basicid");
+
+			var formjsdata = JSON.parse(localStorage.getItem('formjsdata'))
+			console.log(formjsdata)
+
+			console.log(basicid)
+
+			var question = []
+			var answer = []
+			var report = []
+			var str = ''
+			var fraction = 0
+			var result = []
+			getquestion()
+
+			function getquestion() {
+				$.ajax({
+					type: 'get',
+					url: '/maturitys/listall',
+					success: function(data) {
+						for (let i = 0; i < data.length; i++) {
+							question[i] = {}
+							question[i].id = data[i].id
+							question[i].assessmentText = data[i].assessmentText
+							question[i].maturityTitle = data[i].maturityTitle
+						}
+						getanswer()
+						$('.boxmid').html("共计"+ data.length + "道题")
+					}
+				});
+			}
+
+			function getanswer() {
+				$.ajax({
+					type: 'get',
+					url: '/maturityconditons/listall',
+					success: function(data) {
+						for (let j = 0; j < data.length; j++) {
+							answer[j] = {}
+							answer[j].id = data[j].id
+							answer[j].maturityid = Number(data[j].maturityid)
+							answer[j].conditionsContent = data[j].conditionsContent
+							answer[j].score = data[j].score
+						}
+						getreport()
+					}
+				});
+			}
+
+			function getreport() {
+				for (let i = 0; i < question.length; i++) {
+					report.push({
+						id: question[i].id,
+						maturityTitle: question[i].maturityTitle,
+						assessmentText: question[i].assessmentText,
+						key: []
+					})
+					for (let j = 0; j < answer.length; j++) {
+						if (question[i].id == answer[j].maturityid) {
+							report[i].key.push({
+								id: answer[j].id,
+								maturityid: answer[j].maturityid,
+								conditionsContent: answer[j].conditionsContent,
+								score: answer[j].score
+							})
+						}
+					}
+				}
+
+				for (let m = 0; m < report.length; m++) {
+					let xuanze = ''
+					for (let n = 0; n < report[m].key.length; n++) {
+						xuanze += '<option value ="' + report[m].key[n].id + '">' + report[m].key[n].conditionsContent +
+							'</option>'
+					}
+					str += '<div class="topic">' +
+						'<p class="title"><span>' + parseInt(m + 1) + '.</span>' + report[m].maturityTitle + '</p>' +
+						'<p class="content">&nbsp;&nbsp;&nbsp;&nbsp;' + report[m].assessmentText + '</p>' +
+						'<div class="answerbox">' +
+						'<select name="' + report[m].id + '" id="' + report[m].id + '" class="selectbox" style="width: 100%;">' +
+						'<option value ="">请选择</option>' +
+						xuanze +
+						'</select>' +
+						'</div>' +
+						'</div>'
+
+				}
+				$('.boxtop').html(str)
+			}
+		
+			
+			$( "select option:selected" ).each(function() { 
+				console.log($(this).val())
+			});
+			var answerarr = [];
+			function submitForm() {
+				answerarr = []
+				fraction = 0
+				result = []
+				$( "select option:selected" ).each(function() {
+					console.log($(this).val())
+					if($(this).val() != '' && answerarr.indexOf(Number($(this).val())) == '-1' ) {
+						answerarr.push(Number($(this).val()))
+					} 
+					
+				});
+				
+				console.log(answerarr)
+				
+				if (answerarr.length == question.length) {
+					console.log("填写完毕")
+					console.log(answerarr);
+					for (let i = 0; i < answerarr.length; i++) {
+						for (let j = 0; j < answer.length; j++) {
+							if (answerarr[i] == answer[j].id) {
+								fraction += parseInt(answer[j].score)
+								result.push(answer[j].conditionsContent)
+							}
+						}
+					}
+					console.log("最终分数是" + fraction)
+					console.log(result)
+					getscoregrade(fraction)
+
+				} else {
+					layer.msg("请填写所有报告")
+				}
+			}
+
+			let grade = ''
+
+			function getscoregrade(fraction) {
+				$.ajax({
+					type: 'get',
+					url: '/maturitylevels/listall',
+					success: function(data) {
+						let jieguo = []
+						for (let j = 0; j < data.length; j++) {
+							let arr = data[j].maturitynum.split(',')
+							if (arr.length = 2) {
+								jieguo.push({
+									min: arr[0],
+									max: arr[1],
+									maturitylevel: data[j].maturitylevel
+								})
+							} else {
+								jieguo.push({
+									min: arr[0],
+									maturitylevel: data[j].maturitylevel
+								})
+							}
+
+						}
+						console.log(jieguo)
+						console.log(fraction)
+						for (let i = 0; i < jieguo.length; i++) {
+							if (i < jieguo.length - 1) {
+								if (fraction >= jieguo[i].min && fraction < jieguo[i].max) {
+									// console.log(jieguo[i].maturitylevel)
+									grade = jieguo[i].maturitylevel
+								}
+							} else if (i == jieguo.length - 1) {
+								if (fraction >= jieguo[i].min) {
+									// console.log(jieguo[i].maturitylevel)
+									grade = jieguo[i].maturitylevel
+								}
+							}
+
+						}
+						console.log(grade)
+						submitreport()
+					}
+				});
+			}
+
+			function submitreport() {
+				console.log("提交问卷")
+				console.log(basicid)
+				console.log(fraction)
+				console.log(result)
+				console.log(grade)
+
+				var formdata = {}
+				formdata.maturityjs = basicid
+				formdata.maturityfs = fraction
+				formdata.chosejl = result.toString()
+				formdata.score = fraction
+				formdata.spare1 = grade
+				console.log(formdata)
+
+				$.ajax({
+					type: 'post',
+					url: '/maturityjls',
+					contentType: "application/json; charset=utf-8",
+					data: JSON.stringify(formdata),
+					success: function(data) {
+						var str = "提交成功,您的分数为" + fraction + "分，等级为" + grade
+						layer.msg(str, {
+							time: 1000
+						}, function() {
+							getupdate()
+						});
+					}
+				});
+
+			}
+
+			function getupdate() {
+				console.log(1111)
+				console.log(formjsdata)
+				formjsdata.shuxing3 = grade
+				console.log(formjsdata)
+				$.ajax({
+					type: 'put',
+					url: '/basicdatas',
+					contentType: "application/json; charset=utf-8",
+					data: JSON.stringify(formjsdata),
+					success: function(data) {
+						window.location.href = "../basicdata/js/BasicdataDetails.html?id=" + basicid;
+					}
+				});
+			}
+		</script>
+	</body>
+
+</html>

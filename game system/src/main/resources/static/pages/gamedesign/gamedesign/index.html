@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Game</title>
+		<link rel="stylesheet" href="layui/css/layui.css">
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			.box1,
+			.box2,
+			.box3,
+			.box4,
+			.box5,
+			.box6 {
+				width: 100%;
+				height: 100vh;
+				box-sizing: border-box;
+				padding: 50px;
+			}
+
+			.box1,
+			.box2,
+			.box3,
+			.box4,
+			.box5,
+			.box6 h2 {
+				line-height: 50px;
+			}
+
+			.box1,
+			.box2,
+			.box3,
+			.box4>p {
+				line-height: 40px;
+				font-size: 16px;
+			}
+
+			.box1,
+			.box2,
+			.box3,
+			.box4,
+			.box5,
+			.box6 label {
+				margin-right: 10px;
+			}
+
+			.box11,
+			.box12 {
+				width: 200px;
+				height: 200px;
+				box-sizing: border-box;
+			}
+
+			.box21,
+			.box22 {
+				width: 200px;
+				height: 200px;
+				box-sizing: border-box;
+				z-index: 10;
+			}
+
+			.box31,
+			.box32,
+			.box33,
+			.box34,
+			.box35,
+			.box36,
+			.box37,
+			.box38,
+			.box39,
+			.box310 {
+				width: 100px;
+				height: 100px;
+				box-sizing: border-box;
+				z-index: 10;
+			}
+
+			.box41,
+			.box42,
+			.box43,
+			.box44,
+			.box45,
+			.box46,
+			.box47,
+			.box48,
+			.box49,
+			.box410 {
+				width: 100px;
+				height: 100px;
+				box-sizing: border-box;
+				z-index: 10;
+				margin-right: 10px;
+			}
+
+
+			.box61,
+			.box62,
+			.box63,
+			.box64,
+			.box65 {
+				width: 100px;
+				height: 100px;
+				box-sizing: border-box;
+				z-index: 10;
+				margin-right: 10px;
+			}
+
+			.box51,
+			.box52 {
+				width: 200px;
+				height: 200px;
+				box-sizing: border-box;
+				z-index: 10;
+				margin-right: 10px;
+			}
+
+			.box81,
+			.box82,
+			.box83,
+			.box84,
+			.box85 {
+				width: 100px;
+				height: 100px;
+				box-sizing: border-box;
+				z-index: 10;
+				margin-right: 10px;
+			}
+
+			.number {
+				display: block;
+				height: 100px;
+				font-size: 20px;
+				line-height: 100px;
+				text-align: center;
+				color: #000;
+			}
+
+			.btnbox {
+				width: 100%;
+				height: 100px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.btnbox div {
+				margin-right: 100px;
+			}
+
+			.btn1,
+			.btn2,
+			.btn3,
+			.btn4,
+			.btn41,
+			.btn5,
+			.btn51,
+			.btn6,
+			.btn61,
+			.btn21,
+			.btn31,
+			.box3selectboxdel,
+			.box4selectboxdel,
+			.box6selectboxdel {
+				margin-right: 20px;
+			}
+
+			.boxdiv {
+				display: flex;
+				z-index: 1;
+				width: 500px;
+				height: 250px;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.boxdiv4 {
+				display: flex;
+				z-index: 1;
+				width: 1300px;
+				height: 250px;
+				align-items: center;
+				justify-content: flex-start;
+			}
+
+			.boxdiv6 {
+				display: flex;
+				z-index: 1;
+				width: 1000px;
+				height: 120px;
+				align-items: center;
+				justify-content: space-between;
+			}
+
+			.boxdiv8 {
+				display: flex;
+				z-index: 1;
+				width: 700px;
+				height: 120px;
+				margin-left: 150px;
+				align-items: center;
+				justify-content: space-between;
+			}
+
+			.box3selectbox {
+				display: flex;
+				z-index: 1;
+				width: 800px;
+				height: 80px;
+				align-items: center;
+				justify-content: flex-start;
+			}
+
+			.box3selectbox div {
+				width: 80px;
+				height: 80px;
+				font-size: 20px;
+				line-height: 80px;
+				text-align: center;
+				color: #000;
+			}
+
+			.box4selectbox {
+				display: flex;
+				z-index: 1;
+				width: 800px;
+				height: 80px;
+				align-items: center;
+				justify-content: flex-start;
+			}
+
+			.box4selectbox div {
+				width: 80px;
+				height: 80px;
+				font-size: 20px;
+				line-height: 80px;
+				text-align: center;
+				color: #000;
+			}
+
+			.box6selectbox {
+				display: flex;
+				z-index: 1;
+				width: 800px;
+				height: 80px;
+				align-items: center;
+				justify-content: flex-start;
+			}
+
+			.box6selectbox div {
+				width: 80px;
+				height: 80px;
+				font-size: 20px;
+				line-height: 80px;
+				text-align: center;
+				color: #000;
+			}
+
+			.boxdiv2 {
+				display: flex;
+				z-index: 1;
+				width: 500px;
+				height: 250px;
+				align-items: center;
+				justify-content: space-between;
+			}
+
+			.boxdiv2 .boxdiv2item1 {
+				width: 250px;
+				height: 250px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: #e0acac;
+			}
+
+			.boxdiv2 .boxdiv2item2 {
+				width: 250px;
+				height: 250px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: #e0aca3;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Game 1 -->
+		<div class="box1">
+			<h2>Game 1</h2>
+			<p>Game description: Given a pair of similar coloured squares, you need to choose which is lighter in
+				colour, or whether they are the same.</p>
+			<div class="boxdiv">
+				<div class="box11"></div>
+				<div class="box12"></div>
+			</div>
+			<div style="margin-bottom: 15px;">
+				<p>Your answer is:</p>
+				<input type="radio" id="box1radio1" name="box1radio" value="左边更亮">
+				<label for="box1radio1">Left side</label>
+				<input type="radio" id="box1radio12" name="box1radio" value="右边更亮">
+				<label for="box1radio12">Right side</label>
+				<input type="radio" id="box1radio13" name="box1radio" value="相同">
+				<label for="box1radio13">Same</label>
+			</div>
+			<div class="btnbox">
+				<div class="layui-btn btn1">Next</div>
+			</div>
+		</div>
+
+		<!-- Game 2 -->
+		<div class="box2">
+			<h2>Game 2</h2>
+			<p>Game description:Given a pair of similar coloured squares with a background and spacing between them,
+				again determine which is lighter in colour, or whether they are the same.</p>
+			<div class="boxdiv2">
+				<div class="boxdiv2item1">
+					<div class="box21"></div>
+				</div>
+				<div class="boxdiv2item2">
+					<div class="box22"></div>
+				</div>
+			</div>
+			<div style="margin-bottom: 15px;">
+				<p>Your answer is:</p>
+				<input type="radio" id="box2radio1" name="box2radio" value="左边更亮">
+				<label for="box2radio1">Left side</label>
+				<input type="radio" id="box1radio12" name="box2radio" value="右边更亮">
+				<label for="bo2radio12">Right side</label>
+				<input type="radio" id="box1radio13" name="box2radio" value="相同">
+				<label for="box2radio13">Same</label>
+			</div>
+			<div class="btnbox">
+				<div class="layui-btn btn21">Back</div>
+				<div class="layui-btn btn2">Next</div>
+			</div>
+		</div>
+
+		<!-- Game 4 -->
+		<div class="box3">
+			<h2>Game 4</h2>
+			<p>Description:The interface shows a tightly packed sequence of 10 similarly coloured squares, which you
+				need to sort in order from light to dark. Click on the squares in the order you have in mind and click
+				on the "Eliminate" button if you make a mistake.
+				For example, if at first you want to select tile 3, but then you think that tile 4 is in this position,
+				you can click on the "Eliminate" button.
+				When you start answering the questions, click the "Start" button to begin the timing operation!</p>
+			<div class="boxdiv" style="width: 1100px;">
+				<div class="box31" onclick="selectthree(1)"></div>
+				<div class="box32" onclick="selectthree(2)"></div>
+				<div class="box33" onclick="selectthree(3)"></div>
+				<div class="box34" onclick="selectthree(4)"></div>
+				<div class="box35" onclick="selectthree(5)"></div>
+				<div class="box36" onclick="selectthree(6)"></div>
+				<div class="box37" onclick="selectthree(7)"></div>
+				<div class="box38" onclick="selectthree(8)"></div>
+				<div class="box39" onclick="selectthree(9)"></div>
+				<div class="box310" onclick="selectthree(10)"></div>
+			</div>
+			<div style="margin-bottom: 15px;">
+				<p></p>
+				<p>Time used:<span class="jishi1box">0</span>second</p>
+				<p>Your answer is:</p>
+				<div style="width: 1000px;display: flex;align-items: center;justify-content: space-between;">
+					<div class="box3selectbox"></div>
+					<div class="layui-btn box3selectboxdel">Eliminate</div>
+				</div>
+			</div>
+			<div class="btnbox">
+				<div class="layui-btn btn31">Back</div>
+				<div class="layui-btn btn32">Start</div>
+				<div class="layui-btn btn3">Next</div>
+			</div>
+		</div>
+
+		<!-- Game 5 -->
+		<div class="box4">
+			<h2>Game 5</h2>
+			<p>Game description:The interface shows a sequence of 10 similarly coloured squares, but each of these 10
+				squares is spaced a certain distance apart and you <br/>need to sort them from light to dark.
+				This game has an additional feature; when you click on a square, it is sorted, and you can switch the locations<br/> of two squares by double-clicking on them and then clicking the "Change position" button. Clearing and timing operations are the same as in Game 4.
+			</p>
+			<div class="boxdiv4">
+				<div class="box41 dbbox" onclick="selectfour(1)"></div>
+				<div class="box42 dbbox" onclick="selectfour(2)"></div>
+				<div class="box43 dbbox" onclick="selectfour(3)"></div>
+				<div class="box44 dbbox" onclick="selectfour(4)"></div>
+				<div class="box45 dbbox" onclick="selectfour(5)"></div>
+				<div class="box46 dbbox" onclick="selectfour(6)"></div>
+				<div class="box47 dbbox" onclick="selectfour(7)"></div>
+				<div class="box48 dbbox" onclick="selectfour(8)"></div>
+				<div class="box49 dbbox" onclick="selectfour(9)"></div>
+				<div class="box410 dbbox" onclick="selectfour(10)"></div>
+			</div>
+			<div style="margin-bottom: 15px;">
+				<p></p>
+				<p>Time used:<span class="jishi2box">0</span>second</p>
+				<p>Your answer is:</p>
+				<div style="width: 1000px;display: flex;align-items: center;justify-content: space-between;">
+					<div class="box4selectbox"></div>
+					<div class="layui-btn box4selectboxdel">Eliminate</div>
+				</div>
+			</div>
+			<div class="btnbox">
+				<div class="layui-btn btn41">Back</div>
+				<div class="layui-btn btn42">Start</div>
+				<div class="layui-btn btn4">Next</div>
+				<div class="layui-btn btn43">Change position</div>
+			</div>
+		</div>
+
+		<!-- Game 3 -->
+		<div class="box5">
+			<h2>Game 3</h2>
+			<p>Game description:Two squares will alternate and you need to determine which one is the lighter colour.
+			</p>
+			<div class="boxdiv">
+				<div class="box51"></div>
+				<div class="box52"></div>
+			</div>
+			<div style="margin-bottom: 15px;">
+				<p>Your answer is:</p>
+				<input type="radio" id="box5radio1" name="box5radio" value="左边更亮">
+				<label for="box2radio1">Left side</label>
+				<input type="radio" id="box5radio2" name="box5radio" value="右边更亮">
+				<label for="bo2radio12">Right side</label>
+			</div>
+			<div class="btnbox">
+				<div class="layui-btn btn51">Back</div>
+				<div class="layui-btn btn5">Next</div>
+			</div>
+		</div>
+
+
+		<!-- Game 6 -->
+		<div class="box6">
+			<h2>Game 6</h2>
+			<p>Game description:The interface shows 10 similar coloured squares, but squares 1, 3, 5, 7 and 9 have been
+				given a designated position, so you need to fill in the squares 2, 4, 6, 8 and 10 from the 5 given above
+				in order of light to dark.
+				Clearing and timing operations are the same as in Game 4.However, when you have finished, you will need
+				to click the 'Finish' button to end the timer.
+			</p>
+			<div class="boxdiv8">
+				<div class="box81" onclick="selectsix(2)"></div>
+				<div class="box82" onclick="selectsix(4)"></div>
+				<div class="box83" onclick="selectsix(6)"></div>
+				<div class="box84" onclick="selectsix(8)"></div>
+				<div class="box85" onclick="selectsix(10)"></div>
+			</div>
+			<div class="boxdiv6">
+				<div class="box61"></div>
+				<div class="box62"></div>
+				<div class="box63"></div>
+				<div class="box64"></div>
+				<div class="box65"></div>
+			</div>
+			<br />
+			<br />
+			<br />
+			<br />
+			<div style="margin-bottom: 15px;">
+				<p></p>
+				<p>Time used:<span class="jishi3box">0</span>second</p>
+				<br />
+				<br />
+				<p>Your answer is:</p>
+				<div style="width: 1000px;display: flex;align-items: center;justify-content: space-between;">
+					<div class="box6selectbox"></div>
+					<div class="layui-btn box6selectboxdel">Eliminate</div>
+				</div>
+			</div>
+			<div class="btnbox">
+				<div class="layui-btn btn61">Back</div>
+				<div class="layui-btn btn62">Start</div>
+				<div class="layui-btn btn63">Finish</div>
+			</div>
+			<div class="btnbox">
+				<div class="layui-btn btn6">Submit</div>
+			</div>
+		</div>
+
+		<script src="js/jquery.js"></script>
+		<script src="layui/layui.js"></script>
+		<script>
+			layui.use('layer', function() {
+				var layer = layui.layer;
+			});
+
+			window.onload = function() {
+				$('.box1').css("display", 'block')
+				$('.box2').css("display", 'none')
+				$('.box3').css("display", 'none')
+				$('.box4').css("display", 'none')
+				$('.box5').css("display", 'none')
+				$('.box6').css("display", 'none')
+				getanswer1()
+			}
+
+			let question1 = ''
+			let question2 = ''
+			let question3 = []
+			let question4 = []
+			let question5 = ''
+			let question6 = []
+			let number1 = 237
+			let number2 = 0
+			let number3 = 0
+
+
+			let number11 = 0
+			let number22 = 255
+			let number33 = 221
+
+			let jishi1 = 0
+			let jishi1timer = null;
+			let jishi2 = 0
+			let jishi2timer = null;
+			let jishi3 = 0
+			let jishi3timer = null;
+
+			var TimeFn = null;
+			var changearr = []
+			$('.dbbox').dblclick(function() {
+				// 取消上次延时未执行的方法
+				clearTimeout(TimeFn);
+				//双击事件的执行代码
+				console.log(111)
+				console.log($(this).text())
+				let text = $(this).text()
+				console.log($(this).css('background'))
+				console.log($(this).css('background').slice(18, 21))
+				let background = $(this).css('background').slice(18, 21)
+				if (background == 'one') {
+					background = '1'
+				}
+				changearr.push({
+					text: text,
+					background: background
+				})
+			})
+
+
+			$('.btn43').click(function() {
+				let questionnumbernumber4 = localStorage.getItem('questionnumbernumber4')
+				console.log("问题question4arr", question4arr)
+				console.log("questionnumbernumber4", questionnumbernumber4)
+				console.log("question4", getsort(question4))
+				let arr = []
+				arr = changearr.slice(-2)
+				let selectone = Number(arr[0].background)
+				let selecttwo = Number(arr[1].background)
+				let selectarr = question4arr
+				console.log(selectone)
+
+
+				setchangearr(selectone, selecttwo, selectarr)
+
+			})
+
+			function setchangearr(selectone, selecttwo, selectarr) {
+				for (let i = 0; i < selectarr.length; i++) {
+					if (selectarr[i].background == selectone) {
+						selectarr[i].background = '2'
+					}
+				}
+
+				for (let j = 0; j < selectarr.length; j++) {
+					if (selectarr[j].background == selecttwo) {
+						selectarr[j].background = selectone
+					}
+				}
+
+				for (let k = 0; k < selectarr.length; k++) {
+					if (selectarr[k].background == '2') {
+						selectarr[k].background = selecttwo
+					}
+				}
+				console.log("改变selectarr", selectarr)
+
+
+
+				question4 = []
+				question4arr = []
+				console.log("11111selectarr",selectarr)
+				for (let m= 1; m <11; m++) {
+					let number4 = selectarr[m-1].background
+					let background = 'rgba(' + number11 + ',' + number22 + ',' + number33 + ',' + number4 + ')'
+					$('.box4' + m).css("background", background)
+					$('.box4' + m).html('<p class="number">' + m + '</p>')
+					question4.push(number4)
+					question4arr.push({
+						text: m,
+						background: number4
+					})
+				}
+				localStorage.setItem('questionnumbernumber4', question4)
+				console.log(getsort(question4))
+				localStorage.setItem('question4', getsort(question4))
+			}
+
+
+
+			function getanswer1() {
+				question1 = ''
+				let number4 = getcolor()
+				let number5 = getcolor()
+				let background1 = 'rgba(' + number1 + ',' + number2 + ',' + number3 + ',' + number4 + ')'
+				let background2 = 'rgba(' + number1 + ',' + number2 + ',' + number3 + ',' + number5 + ')'
+				console.log(background1, background2)
+				// console.log(number4)
+				// console.log(number5)
+				if (number4 == number5) {
+					question1 = '相同'
+				} else if (number4 - number5 > 0) {
+					question1 = '右边更亮'
+				} else if (number4 - number5 < 0) {
+					question1 = '左边更亮'
+				}
+				console.log('question1', question1)
+				localStorage.setItem('question1', question1)
+				$('.box11').css("background", background1)
+				$('.box12').css("background", background2)
+			}
+
+			function getanswer2() {
+				question2 = ''
+				let number4 = getcolor()
+				let number5 = getcolor()
+				let background1 = 'rgba(' + number1 + ',' + number2 + ',' + number3 + ',' + number4 + ')'
+				let background2 = 'rgba(' + number1 + ',' + number2 + ',' + number3 + ',' + number5 + ')'
+				console.log(background1, background2)
+				// console.log(number4)
+				// console.log(number5)
+				if (number4 == number5) {
+					question2 = '相同'
+				} else if (number4 - number5 > 0) {
+					question2 = '右边更亮'
+				} else if (number4 - number5 < 0) {
+					question2 = '左边更亮'
+				}
+				console.log('question2', question2)
+				localStorage.setItem('question2', question2)
+				$('.box21').css("background", background1)
+				$('.box22').css("background", background2)
+
+			}
+
+			function getanswer3() {
+				question3 = []
+				for (let i = 1; i < 11; i++) {
+					let number4 = getcolor3()
+					let background = 'rgba(' + number11 + ',' + number22 + ',' + number33 + ',' + number4 + ')'
+					$('.box3' + i).css("background", background)
+					$('.box3' + i).html('<p class="number">' + i + '</p>')
+					question3.push(number4)
+				}
+				console.log(box3colorselectarr)
+				console.log("question3", getsort(question3))
+				localStorage.setItem('question3', getsort(question3))
+
+			}
+
+			function getsort(arr) {
+				// console.log(arr)
+				let numarr = []
+				for (let i = 0; i < arr.length; i++) {
+					numarr.push({
+						i: i + 1,
+						xiabiao: arr[i]
+					})
+				}
+				numarr.sort(compare('xiabiao'))
+				// console.log(numarr)
+				let jieguo = []
+				for (let j = 0; j < numarr.length; j++) {
+					jieguo.push(numarr[j].i)
+				}
+				console.log("jieguo", jieguo)
+				return jieguo
+			}
+
+			function compare(property) {
+				return function(a, b) {
+					var value1 = a[property];
+					var value2 = b[property];
+					return value1 - value2;
+				}
+			}
+
+			let selectfive = true
+			let timer = null;
+
+			function getanswer5() {
+				question5 = ''
+				let background1 = 'rgba(' + number11 + ',' + number22 + ',' + number33 + ',' + 0.4 + ')'
+				let background2 = 'rgba(' + number11 + ',' + number22 + ',' + number33 + ',' + 0.7 + ')'
+				let background3 = 'rgba(' + number11 + ',' + number22 + ',' + number33 + ',' + 0 + ')'
+				console.log(background1, background2, background3)
+				// console.log(background2)
+				// console.log(background3)
+				question5 = '左边更亮'
+				console.log('question5', '左边更亮')
+				localStorage.setItem('question5', question5)
+
+				if (selectfive == true) {
+					$('.box51').css("background", background1)
+					$('.box52').css("background", background3)
+				}
+
+				clearInterval(timer);
+				// 设置定时器
+				timer = setInterval(function() {
+					if (selectfive == true) {
+						$('.box51').css("background", background1)
+						$('.box52').css("background", background3)
+						selectfive = false
+					} else {
+						if (selectfive == false) {
+							$('.box51').css("background", background3)
+							$('.box52').css("background", background2)
+							selectfive = true
+						}
+					}
+				}, 1000)
+			}
+
+
+			let selectthreearr = []
+			let selectfourarr = []
+			let selectsixarr = []
+
+			function selectthree(num) {
+				console.log(num)
+				if (selectthreearr.indexOf(num) == -1) {
+					selectthreearr.push(num)
+					getsetselectthree()
+				} else {
+					layer.msg('Already selected');
+				}
+			}
+
+
+			function getsetselectthree() {
+				let str = ''
+				for (let i = 0; i < selectthreearr.length; i++) {
+					str += '<div class="box3boxitem">' + selectthreearr[i] + '</div>'
+				}
+				$('.box3selectbox').html(str)
+				console.log('selectthreearr----', selectthreearr)
+			}
+
+			$('.box3selectboxdel').click(function() {
+				selectthreearr.pop()
+				let str = ''
+				for (let i = 0; i < selectthreearr.length; i++) {
+					str += '<div class="box3boxitem">' + selectthreearr[i] + '</div>'
+				}
+				$('.box3selectbox').html(str)
+				console.log('selectthreearr----', selectthreearr)
+			})
+
+
+			function selectfour(num) {
+				clearTimeout(TimeFn);
+				//执行延时
+				TimeFn = setTimeout(function() {
+					//do function在此处写单击事件要执行的代码
+					console.log(num)
+					if (selectfourarr.indexOf(num) == -1) {
+						selectfourarr.push(num)
+						getsetselectfour()
+					} else {
+						layer.msg('Already selected');
+					}
+				}, 500);
+
+			}
+
+			function getsetselectfour() {
+				let str = ''
+				for (let i = 0; i < selectfourarr.length; i++) {
+					str += '<div class="box4boxitem">' + selectfourarr[i] + '</div>'
+				}
+				$('.box4selectbox').html(str)
+				console.log('selectfourarr----', selectfourarr)
+			}
+
+			$('.box4selectboxdel').click(function() {
+				selectfourarr.pop()
+				let str = ''
+				for (let i = 0; i < selectfourarr.length; i++) {
+					str += '<div class="box4boxitem">' + selectfourarr[i] + '</div>'
+				}
+				$('.box4selectbox').html(str)
+				console.log('selectfourarr----', selectfourarr)
+			})
+
+
+
+			function selectsix(num) {
+				console.log(num)
+				if (selectsixarr.indexOf(num) == -1) {
+					selectsixarr.push(num)
+					getsetselectsix()
+				} else {
+					layer.msg('Already selected');
+				}
+			}
+
+			function getsetselectsix() {
+				let str = ''
+				for (let i = 0; i < selectsixarr.length; i++) {
+					str += '<div class="box6boxitem">' + selectsixarr[i] + '</div>'
+				}
+				$('.box6selectbox').html(str)
+				console.log('selectsixarr----', selectsixarr)
+			}
+
+			$('.box6selectboxdel').click(function() {
+				selectsixarr.pop()
+				let str = ''
+				for (let i = 0; i < selectsixarr.length; i++) {
+					str += '<div class="box6boxitem">' + selectsixarr[i] + '</div>'
+				}
+				$('.box6selectbox').html(str)
+				console.log('selectsixarr----', selectsixarr)
+			})
+
+			var question4arr = []
+
+			function getanswer4() {
+				question4 = []
+				question4arr = []
+				for (let i = 1; i < 11; i++) {
+					let number4 = getcolor4()
+					let background = 'rgba(' + number11 + ',' + number22 + ',' + number33 + ',' + number4 + ')'
+					$('.box4' + i).css("background", background)
+					$('.box4' + i).html('<p class="number">' + i + '</p>')
+					question4.push(number4)
+					question4arr.push({
+						text: i,
+						background: number4
+					})
+				}
+				console.log(question4)
+				localStorage.setItem('questionnumbernumber4', question4)
+				console.log(getsort(question4))
+				localStorage.setItem('question4', getsort(question4))
+				console.log(box4colorselectarr)
+				console.log("question4arr", question4arr)
+
+			}
+
+			function getcolor() {
+				let number4 = Math.round(Math.random() * 2 + 6) / 10
+				// console.log(number4)
+				console.log("number4", number4)
+				return number4
+			}
+
+			let box3colorarr = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+			let box3colorselectarr = []
+
+			function getcolor3() {
+				let number4 = Math.round(Math.random() * 10) / 10
+				number4 = number4 == 0 ? 0.1 : number4
+				let index = box3colorarr.indexOf(number4);
+				if (index == '-1') {
+					number4 = box3colorarr[0]
+					box3colorarr.splice(0, 1)
+				} else {
+					box3colorarr.splice(index, 1)
+				}
+
+				box3colorselectarr.push(number4)
+				return number4
+			}
+
+			let box4colorarr = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+			let box4colorselectarr = []
+
+			function getcolor4() {
+				let number4 = Math.round(Math.random() * 10) / 10
+				number4 = number4 == 0 ? 0.1 : number4
+				let index = box4colorarr.indexOf(number4);
+				if (index == '-1') {
+					number4 = box4colorarr[0]
+					box4colorarr.splice(0, 1)
+				} else {
+					box4colorarr.splice(index, 1)
+				}
+
+				box4colorselectarr.push(number4)
+				return number4
+			}
+			let box6colorarr = [0.2, 0.4, 0.6, 0.8, 1]
+			let box6colorselectarr = []
+
+			function getcolor6() {
+				let number6 = Math.round(Math.random() * 5) / 5
+				number6 = number6 == 0 ? 0.2 : number6
+				console.log("number6", number6)
+				let index = box6colorarr.indexOf(number6);
+				if (index == '-1') {
+					number6 = box6colorarr[0]
+					box6colorarr.splice(0, 1)
+				} else {
+					box6colorarr.splice(index, 1)
+				}
+
+				box6colorselectarr.push(number6)
+				// console.log(box6colorselectarr)
+				return number6
+			}
+
+			$('.btn1').click(function() {
+				let answer1 = $("input[name='box1radio']:checked").val();
+				if (answer1 == undefined) {
+					layer.msg('Please select your answer');
+				} else {
+					console.log("answer1", answer1)
+					localStorage.setItem('answer1', answer1)
+					$('.box1').css("display", 'none')
+					$('.box2').css("display", 'block')
+					getanswer2()
+				}
+			})
+
+			$('.btn2').click(function() {
+				let answer2 = $("input[name='box2radio']:checked").val();
+				if (answer2 == undefined) {
+					layer.msg('Please select your answer');
+				} else {
+					console.log("answer2", answer2)
+					localStorage.setItem('answer2', answer2)
+					$('.box2').css("display", 'none')
+					$('.box5').css("display", 'block')
+					getanswer5()
+				}
+			})
+
+			$('.btn21').click(function() {
+				$('.box2').css("display", 'none')
+				$('.box1').css("display", 'block')
+			})
+
+			$('.btn3').click(function() {
+				$('.box3').css("display", 'none')
+				$('.box4').css("display", 'block')
+				localStorage.setItem('jishi1', jishi1)
+				clearInterval(jishi1timer);
+				jishi1 = 0
+				$('.jishi1box').html(jishi1)
+
+				let answer5 = $("input[name='box5radio']:checked").val();
+				console.log("answer5", answer5)
+				localStorage.setItem('answer5', answer5)
+				$('.box5').css("display", 'none')
+				$('.box4').css("display", 'block')
+				getanswer4()
+
+			})
+
+			$('.btn32').click(function() {
+				console.log(jishi1timer)
+				if (jishi1timer == null) {
+					jishi1timer = setInterval(function() {
+						jishi1++
+						$('.jishi1box').html(jishi1)
+						console.log("jishi1", jishi1)
+					}, 1000)
+				} else {
+					layer.msg("Already on the clock")
+				}
+			})
+
+
+			$('.btn31').click(function() {
+				$('.box3').css("display", 'none')
+				$('.box5').css("display", 'block')
+				clearInterval(jishi1timer);
+				jishi1timer = null;
+				jishi1 = 0
+				$('.jishi1box').html(jishi1)
+			})
+
+			$('.btn41').click(function() {
+				$('.box4').css("display", 'none')
+				$('.box3').css("display", 'block')
+				clearInterval(jishi2timer);
+				jishi2timer = null;
+				jishi2 = 0
+				$('.jishi2box').html(jishi2)
+			})
+
+			$('.btn42').click(function() {
+				console.log(jishi2timer)
+				if (jishi2timer == null) {
+					jishi2timer = setInterval(function() {
+						jishi2++
+						$('.jishi2box').html(jishi2)
+						console.log("jishi2", jishi2)
+					}, 1000)
+
+				} else {
+					layer.msg("Already on the clock")
+				}
+			})
+
+			$('.btn4').click(function() {
+				$('.box4').css("display", 'none')
+				$('.box6').css("display", 'block')
+				console.log("answer3", selectthreearr)
+				localStorage.setItem('answer3', selectthreearr)
+				localStorage.setItem('jishi2', jishi2)
+				console.log('最终结果jishi2', jishi2)
+				clearInterval(jishi2timer);
+				jishi2timer = null;
+				jishi2 = 0
+				$('.jishi2box').html(jishi2)
+				getanswer6()
+
+			})
+
+			$('.btn51').click(function() {
+				$('.box5').css("display", 'none')
+				$('.box2').css("display", 'block')
+				clearInterval(timer);
+			})
+			$('.btn5').click(function() {
+				$('.box5').css("display", 'none')
+				$('.box3').css("display", 'block')
+				console.log("answer4", selectfourarr)
+				localStorage.setItem('answer4', selectfourarr)
+				localStorage.setItem('jishi2', jishi2)
+				console.log('最终结果jishi2', jishi2)
+				clearInterval(jishi2timer);
+				jishi2timer = null;
+				jishi2 = 0
+				$('.jishi2box').html(jishi2)
+				getanswer3()
+
+			})
+
+			$('.btn61').click(function() {
+				$('.box6').css("display", 'none')
+				$('.box4').css("display", 'block')
+				clearInterval(jishi3timer);
+				jishi3timer = null;
+				jishi3 = 0
+				$('.jishi3box').html(jishi3)
+				getanswer4()
+			})
+
+
+			$('.btn62').click(function() {
+				console.log(jishi3timer)
+				if (jishi3timer == null) {
+					jishi3timer = setInterval(function() {
+						jishi3++
+						$('.jishi3box').html(jishi3)
+						console.log("jishi3", jishi3)
+					}, 1000)
+
+				} else {
+					layer.msg("Already on the clock")
+				}
+			})
+			$('.btn63').click(function() {
+				localStorage.setItem('jishi3', jishi3)
+				console.log('最终结果jishi3', jishi3)
+				clearInterval(jishi3timer);
+			})
+			$('.btn6').click(function() {
+				console.log("answer6", selectsixarr)
+				localStorage.setItem('answer6', selectsixarr)
+				console.log('最终结果jishi3', jishi3)
+				localStorage.setItem('jishi3', jishi3)
+				console.log("jishi3", jishi3)
+				clearInterval(jishi3timer);
+				console.log("提交")
+				let jishi1 = localStorage.getItem('jishi1')
+				let jishi2 = localStorage.getItem('jishi2')
+				let jishi31 = localStorage.getItem('jishi3')
+				console.log("jishi1-----", jishi1, "jishi2-----", jishi2, "jishi3----", jishi31)
+
+				let gameuser = localStorage.getItem('gameuser')
+				gameuser = JSON.parse(gameuser)
+				console.log(gameuser)
+
+				let question1 = localStorage.getItem('question1')
+				let question2 = localStorage.getItem('question2')
+				let question3 = localStorage.getItem('question3')
+				let question4 = localStorage.getItem('question4')
+				let question5 = localStorage.getItem('question5')
+				let question6 = localStorage.getItem('question6')
+				console.log("question1", question1)
+				console.log("question2", question2)
+				console.log("question3", question3)
+				console.log("question4", question4)
+				console.log("question5", question5)
+				console.log("question6", question6)
+
+				let answer1 = localStorage.getItem('answer1')
+				let answer2 = localStorage.getItem('answer2')
+				let answer3 = localStorage.getItem('answer3')
+				let answer4 = localStorage.getItem('answer4')
+				let answer5 = localStorage.getItem('answer5')
+				let answer6 = localStorage.getItem('answer6')
+				console.log("answer1", answer1)
+				console.log("answer2", answer2)
+				console.log("answer3", answer3)
+				console.log("answer4", answer4)
+				console.log("answer5", answer5)
+				console.log("answer6", answer6)
+				let wenti1 = question1 == answer1 ? '对' : '错'
+				let wenti2 = question2 == answer2 ? '对' : '错'
+				let wenti5 = question3 == answer3 ? '对' : '错'
+				let wenti4 = question4 == answer4 ? '对' : '错'
+				let wenti3 = question5 == answer5 ? '对' : '错'
+				let wenti6 = question6 == answer6 ? '对' : '错'
+
+				for (let i = 1; i < 7; i++) {
+					let data = {}
+					data.yxrm = gameuser.name
+					data.yxrnl = gameuser.age
+					data.yxrxb = gameuser.sax
+					data.swyx = i
+					if (i == 1) {
+						data.sfzq = wenti1
+					} else if (i == 2) {
+						data.sfzq = wenti2
+					} else if (i == 3) {
+						data.sfzq = wenti3
+					} else if (i == 5) {
+						data.sfzq = wenti4
+						data.yxsj = jishi2
+					} else if (i == 4) {
+						data.sfzq = wenti5
+						data.yxsj = jishi1
+					} else if (i == 6) {
+						data.sfzq = wenti6
+						data.yxsj = jishi31
+					}
+
+					console.log(data)
+					$.ajax({
+						type: 'post',
+						url: 'http://localhost:1333/yxjlbs',
+						contentType: "application/json; charset=utf-8",
+						data: JSON.stringify(data),
+						success: function(data) {
+							console.log(data)
+						}
+					});
+				}
+				setTimeout(function() {
+					window.location.href = 'tongji.html'
+				}, 1000);
+			})
+
+
+
+			function getanswer6() {
+				question6 = []
+				for (let i = 1; i < 6; i++) {
+					let background = 'rgba(' + number11 + ',' + number22 + ',' + number33 + ',' + parseFloat((0.2 * i - 0.1))
+						.toFixed(1) + ')'
+					console.log(background)
+					$('.box6' + i).css("background", background)
+					$('.box6' + i).html('<p class="number">' + (2 * i - 1) + '</p>')
+				}
+
+				for (let j = 1; j < 6; j++) {
+					let number4 = getcolor6()
+					let background1 = 'rgba(' + number11 + ',' + number22 + ',' + number33 + ',' + number4 + ')'
+					console.log("getanswer6-background1------", background1)
+					$('.box8' + j).css("background", background1)
+					$('.box8' + j).html('<p class="number">' + j * 2 + '</p>')
+					question6.push(number4)
+				}
+				let que = getsort(question6)
+				let question66 = []
+				for (let m = 0; m < que.length; m++) {
+					question66.push(que[m] * 2)
+				}
+				console.log("question66", question66)
+				// console.log("question6",question66 )
+				localStorage.setItem('question6', question66)
+			}
+		</script>
+	</body>
+</html>

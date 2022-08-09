@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Jan 02 10:36:41 CST 2020
+commons-logging-1.1.1.jar>central=
+commons-logging-1.1.1-sources.jar>aliyun-repos=
+commons-logging-1.1.1.jar>aliyun-repos=
+commons-logging-1.1.1.pom>central=

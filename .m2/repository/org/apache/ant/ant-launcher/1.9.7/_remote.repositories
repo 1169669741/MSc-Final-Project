@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Jan 02 10:36:01 CST 2020
+ant-launcher-1.9.7-sources.jar>central=
+ant-launcher-1.9.7.jar>central=
+ant-launcher-1.9.7.jar>aliyun-repos=
+ant-launcher-1.9.7.pom>central=
+ant-launcher-1.9.7.pom>aliyun-repos=

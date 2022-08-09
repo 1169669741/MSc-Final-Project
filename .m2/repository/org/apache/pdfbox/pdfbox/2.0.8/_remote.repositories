@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Jan 02 10:33:26 CST 2020
+pdfbox-2.0.8.jar>aliyun-repos=
+pdfbox-2.0.8-sources.jar>central=
+pdfbox-2.0.8.pom>central=
+pdfbox-2.0.8.jar>central=
+pdfbox-2.0.8.pom>aliyun-repos=

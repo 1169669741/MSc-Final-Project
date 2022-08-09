@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Jan 02 10:33:29 CST 2020
+javase-2.2.jar>central=
+javase-2.2.pom>central=
+javase-2.2-sources.jar>central=
+javase-2.2.jar>aliyun-repos=
+javase-2.2.pom>aliyun-repos=

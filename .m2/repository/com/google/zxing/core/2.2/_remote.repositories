@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Jan 02 10:35:34 CST 2020
+core-2.2.jar>central=
+core-2.2.pom>aliyun-repos=
+core-2.2-sources.jar>central=
+core-2.2.jar>aliyun-repos=
+core-2.2.pom>central=

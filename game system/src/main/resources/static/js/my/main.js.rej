@@ -1,0 +1,10 @@
+diff a/src/main/resources/static/js/my/main.js b/src/main/resources/static/js/my/main.js	(rejected hunks)
+@@ -148,7 +148,7 @@
+ 
+                 {"orderable": false, "data": "KSBZSJ", "defaultContent": ""},
+                 {"orderable": false, "data": "BZJE", "defaultContent": ""}
+-
++				
+             ],
+             "order": [[0, "asc"]]
+         });

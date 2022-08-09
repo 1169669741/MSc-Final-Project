@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Jan 02 10:35:21 CST 2020
+asm-commons-5.2-sources.jar>aliyun-repos=
+asm-commons-5.2.pom>aliyun-repos=
+asm-commons-5.2.jar>aliyun-repos=

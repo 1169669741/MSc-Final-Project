@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Jan 02 10:35:27 CST 2020
+htmlparser-2.1.jar>aliyun-repos=
+htmlparser-2.1-sources.jar>central=
+htmlparser-2.1.pom>central=
+htmlparser-2.1.jar>central=
+htmlparser-2.1.pom>aliyun-repos=

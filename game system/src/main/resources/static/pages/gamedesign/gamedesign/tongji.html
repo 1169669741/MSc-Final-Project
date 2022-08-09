@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Data graphs</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				/* border: 1px solid red; */
+				box-sizing: border-box;
+			}
+
+			.box {
+				width: 100%;
+				height: 100%;
+				display: flex;
+				align-items: flex-start;
+				justify-content: flex-start;
+				flex-wrap: wrap;
+			}
+
+			.box div {
+				width: calc(33.3% - 10px);
+				margin-left: 10px;
+				height: calc(50% - 10px);
+				margin-bottom: 10px;
+				box-sizing: border-box;
+				/* border: 1px solid blue; */
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div id="box1"></div>
+			<div id="box2"></div>
+			<div id="box3"></div>
+			<div id="box4"></div>
+			<div id="box5"></div>
+			<div id="box6"></div>
+			<div id="box7"></div>
+		</div>
+		<script src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/echarts.js"></script>
+		<script type="text/javascript">
+			window.onload = function() {
+				getecharts1()
+				getecharts2()
+				getecharts3()
+				getecharts4()
+				getecharts5()
+				getecharts6()
+				getecharts7()
+			}
+
+			function getsort(arr) {
+				arr.sort(compare('statictype'))
+				return arr
+			}
+
+
+			function getbuquan(arr) {
+				let ceshi = [{
+					statictype: '1',
+					staticvalue: 0
+				}, {
+					statictype: '2',
+					staticvalue: 0
+				}, {
+					statictype: '3',
+					staticvalue: 0
+				}, {
+					statictype: '4',
+					staticvalue: 0
+				}, {
+					statictype: '5',
+					staticvalue: 0
+				}, {
+					statictype: '6',
+					staticvalue: 0
+				}]
+				let ceshijian = []
+				let arrjian = []
+				for (let i = 0; i < arr.length; i++) {
+					arrjian.push(arr[i].statictype)
+				}
+				// console.log(arrjian)
+				for (let m = 0; m < ceshi.length; m++) {
+					if (arrjian.indexOf(ceshi[m].statictype) != -1) {
+						ceshi[m].staticvalue = arr[arrjian.indexOf(ceshi[m].statictype)].staticvalue
+					}
+				}
+				// console.log("ceshi",ceshi)
+				let jieguo = []
+				for(let n =0 ;n<ceshi.length;n++ ) {
+					jieguo.push(ceshi[n].staticvalue)
+				}
+				return jieguo
+			}
+
+			function compare(property) {
+				return function(a, b) {
+					var value1 = a[property];
+					var value2 = b[property];
+					return value1 - value2;
+				}
+			}
+
+			var namearr1 = []
+			var gamerightarr1 = []
+
+			function getecharts1() {
+				$.ajax({
+					type: 'get',
+					url: 'http://localhost:1333/yxjlbs/staticfirst',
+					data: {},
+					success: function(data) {
+						// console.log("data",data)
+						for (let i = 0; i < data.length; i++) {
+							namearr1.push(data[i].statictype)
+							gamerightarr1.push(parseInt(data[i].staticvalue))
+						}
+						charts1()
+					}
+				});
+			}
+
+			var nanquanarr3 = []
+			var nvquanarr3 = []
+
+			function getecharts2() {
+				let gamearrnan2 = []
+				let gamearrnv2 = []
+				$.ajax({
+					type: 'get',
+					url: 'http://localhost:1333/yxjlbs/staticsecond',
+					data: {},
+					success: function(data) {
+						// console.log("data", data)
+						for (let i = 0; i < data.length; i++) {
+							if (data[i].staitcqt == 'male') {
+								gamearrnan2.push({
+									statictype: data[i].statictype,
+									staticvalue: parseInt(data[i].staticvalue)
+								})
+							} else if (data[i].staitcqt == 'female') {
+								gamearrnv2.push({
+									statictype: data[i].statictype,
+									staticvalue: parseInt(data[i].staticvalue)
+								})
+							}
+						}
+						// console.log(gamearrnan2)
+						// console.log(gamearrnv2)
+
+						let nvarr = getsort(gamearrnv2)
+						let nanarr = getsort(gamearrnan2)
+						// console.log("nvarr", nvarr)
+						nvquanarr = getbuquan(nvarr)
+						nanquanarr = getbuquan(nanarr)
+						// console.log("nvquanarr",nvquanarr)
+						// console.log("nanquanarr",nanquanarr)
+						charts2()
+					}
+				});
+			}
+
+			var gamearr3 = []
+			var gamerightarr3 = []
+
+			function getecharts3() {
+				$.ajax({
+					type: 'get',
+					url: 'http://localhost:1333/yxjlbs/staticthird',
+					data: {},
+					success: function(data) {
+						// console.log("data",data)
+						for (let i = 0; i < data.length; i++) {
+							gamearr3.push('Game' + data[i].statictype)
+							gamerightarr3.push(parseFloat(data[i].staticvalue).toFixed(1))
+						}
+						charts3()
+					}
+				});
+			}
+
+
+var gamearr4 = []
+			var gamerightarr4 = []
+			
+			function getecharts4() {
+				$.ajax({
+					type: 'get',
+					url: 'http://localhost:1333/yxjlbs/staticforth',
+					data: {},
+					success: function(data) {
+						// console.log("data",data)
+						for (let i = 0; i < data.length; i++) {
+							gamearr4.push('Game' + data[i].statictype)
+							gamerightarr4.push(parseFloat(data[i].staticvalue).toFixed(1))
+						}
+						charts4()
+					}
+				});
+			}
+			
+			var gamearr5 = []
+						var gamerightarr5 = []
+			function getecharts5() {
+				$.ajax({
+					type: 'get',
+					url: 'http://localhost:1333/yxjlbs/staticfifth',
+					data: {},
+					success: function(data) {
+						// console.log("data",data)
+						for (let i = 0; i < data.length; i++) {
+							gamearr5.push('Game' + data[i].statictype)
+							gamerightarr5.push(parseFloat(data[i].staticvalue).toFixed(1))
+						}
+						charts5()
+					}
+				});
+			}
+			
+			var gamearr6 = []
+						var gamerightarr6 = []
+			function getecharts6() {
+				$.ajax({
+					type: 'get',
+					url: 'http://localhost:1333/yxjlbs/staticsisth',
+					data: {},
+					success: function(data) {
+						// console.log("data",data)
+						for (let i = 0; i < data.length; i++) {
+							gamearr6.push('Game' + data[i].statictype)
+							gamerightarr6.push(parseFloat(data[i].staticvalue).toFixed(1))
+						}
+						charts6()
+					}
+				});
+			}
+			
+			var gamearr7 = []
+						var gamerightarr7 = []
+			function getecharts7() {
+				$.ajax({
+					type: 'get',
+					url: 'http://localhost:1333/yxjlbs/staticseven',
+					data: {},
+					success: function(data) {
+						console.log("data",data)
+						for (let i = 0; i < data.length; i++) {
+							gamearr7.push('Game' + data[i].statictype)
+							gamerightarr7.push(parseFloat(data[i].staticvalue).toFixed(1))
+						}
+						charts7()
+					}
+				});
+			}
+			
+			function charts1() {
+				var myChart1 = echarts.init(document.getElementById('box1'));
+				option1 = {
+					title: {
+						text: 'Data Analysis Graph 1',
+						left: 'center'
+					},
+					color: ['#7a92df'],
+					tooltip: {
+						trigger: 'axis',
+						axisPointer: {
+							type: 'shadow'
+						}
+					},
+					grid: {
+						left: '3%',
+						right: '4%',
+						bottom: '3%',
+						containLabel: true
+					},
+					xAxis: [{
+						type: 'category',
+						data: namearr1,
+						axisTick: {
+							alignWithLabel: true
+						},
+						axisLabel: {
+							interval: 0
+						}
+					}],
+					yAxis: [{
+						type: 'value'
+					}],
+					series: [{
+						name: 'number',
+						type: 'bar',
+						barWidth: '60%',
+						data: gamerightarr1,
+						itemStyle: {
+							normal: {
+								label: {
+									show: true,
+									position: 'top',
+									textStyle: {
+										color: 'black',
+										fontSize: 16
+									}
+								}
+							}
+						}
+					}]
+				};
+				myChart1.setOption(option1);
+			}
+
+			function charts2() {
+				var myChart2 = echarts.init(document.getElementById('box2'));
+				option2 = {
+					title: {
+						text: 'Data Analysis Graph 2',
+					},
+					xAxis: {
+						data: ['Game1', 'Game2', 'Game3','Game4','Game5','Game6'],
+					},
+					yAxis: {},
+					tooltip: {
+						show: true,
+						trigger: 'axis',
+					},
+					legend: {
+						data: ['male', 'female'],
+						left: 'right'
+					},
+					series: [{
+							name: 'male',
+							type: 'line',
+							data: nanquanarr,
+							label: {
+								normal: {
+									show: true,
+
+								}
+							},
+						},
+						{
+							name: 'female',
+							type: 'line',
+							data:nvquanarr,
+							label: {
+								normal: {
+									show: true,
+								}
+							}
+						}
+					]
+				};
+				myChart2.setOption(option2);
+			}
+
+			function charts3() {
+				var myChart3 = echarts.init(document.getElementById('box3'));
+				option3 = {
+					title: {
+						text: 'Data Analysis Graph 3',
+						left: 'center'
+					},
+					color: ['#ce68ef'],
+					xAxis: [{
+						type: 'category',
+						data: gamearr3,
+						axisTick: {
+							alignWithLabel: true
+						},
+						axisLabel: {
+							interval: 0
+						}
+					}],
+					yAxis: [{
+						type: 'value'
+					}],
+					series: [{
+						name: 'number',
+						type: 'bar',
+						barWidth: '60%',
+						data: gamerightarr3,
+						itemStyle: {
+							normal: {
+								label: {
+									show: true,
+									position: 'top',
+									textStyle: {
+										color: 'black',
+										fontSize: 16
+									}
+								}
+							}
+						}
+					}]
+				};
+				myChart3.setOption(option3);
+			}
+			
+			
+			function charts4() {
+				var myChart4 = echarts.init(document.getElementById('box4'));
+				option4 = {
+					title: {
+						text: 'Data Analysis Graph 4',
+						left: 'center'
+					},
+					color: ['#47e91e'],
+					xAxis: [{
+						type: 'category',
+						data: gamearr4,
+						axisTick: {
+							alignWithLabel: true
+						},
+						axisLabel: {
+							interval: 0
+						}
+					}],
+					yAxis: [{
+						type: 'value'
+					}],
+					series: [{
+						name: 'number',
+						type: 'bar',
+						barWidth: '60%',
+						data: gamerightarr4,
+						itemStyle: {
+							normal: {
+								label: {
+									show: true,
+									position: 'top',
+									textStyle: {
+										color: 'black',
+										fontSize: 16
+									}
+								}
+							}
+						}
+					}]
+				};
+				myChart4.setOption(option4);
+			}
+			
+			
+			function charts5() {
+				var myChart5 = echarts.init(document.getElementById('box5'));
+				option5 = {
+					title: {
+						text: 'Data Analysis Graph 5',
+						left: 'center'
+					},
+					color: ['#ddf20e'],
+					xAxis: [{
+						type: 'category',
+						data: gamearr5,
+						axisTick: {
+							alignWithLabel: true
+						},
+						axisLabel: {
+							interval: 0
+						}
+					}],
+					yAxis: [{
+						type: 'value'
+					}],
+					series: [{
+						name: 'number',
+						type: 'bar',
+						barWidth: '60%',
+						data: gamerightarr5,
+						itemStyle: {
+							normal: {
+								label: {
+									show: true,
+									position: 'top',
+									textStyle: {
+										color: 'black',
+										fontSize: 16
+									}
+								}
+							}
+						}
+					}]
+				};
+				myChart5.setOption(option5);
+			}
+			function charts6() {
+				var myChart6 = echarts.init(document.getElementById('box6'));
+				option6 = {
+					title: {
+						text: 'Data Analysis Graph 6',
+						left: 'center'
+					},
+					color: ['#ee1447'],
+					xAxis: [{
+						type: 'category',
+						data: gamearr6,
+						axisTick: {
+							alignWithLabel: true
+						},
+						axisLabel: {
+							interval: 0
+						}
+					}],
+					yAxis: [{
+						type: 'value'
+					}],
+					series: [{
+						name: 'number',
+						type: 'bar',
+						barWidth: '60%',
+						data: gamerightarr6,
+						itemStyle: {
+							normal: {
+								label: {
+									show: true,
+									position: 'top',
+									textStyle: {
+										color: 'black',
+										fontSize: 16
+									}
+								}
+							}
+						}
+					}]
+				};
+				myChart6.setOption(option6);
+			}
+			
+			function charts7() {
+				var myChart6 = echarts.init(document.getElementById('box7'));
+				option6 = {
+					title: {
+						text: 'Data Analysis Graph 7',
+						left: 'center'
+					},
+					color: ['#efca59'],
+					xAxis: [{
+						type: 'category',
+						data: gamearr7,
+						axisTick: {
+							alignWithLabel: true
+						},
+						axisLabel: {
+							interval: 0
+						}
+					}],
+					yAxis: [{
+						type: 'value'
+					}],
+					series: [{
+						name: 'second',
+						type: 'bar',
+						barWidth: '60%',
+						data: gamerightarr7,
+						itemStyle: {
+							normal: {
+								label: {
+									show: true,
+									position: 'top',
+									textStyle: {
+										color: 'black',
+										fontSize: 16
+									}
+								}
+							}
+						}
+					}]
+				};
+				myChart6.setOption(option6);
+			}
+		</script>
+	</body>
+</html>

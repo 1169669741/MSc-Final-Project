@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Feb 19 20:36:26 CST 2021
+wagon-provider-api-2.1.jar>jeesite-repos=
+wagon-provider-api-2.1.pom>jeesite-repos=
+wagon-provider-api-2.1.pom>aliyun-repos=
+wagon-provider-api-2.1.jar>aliyun-repos=
